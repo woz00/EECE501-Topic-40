@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload and Play Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        video {
+            width: 640px;
+            height: 360px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Upload and Play Video</h1>
+
+    <!-- File Input -->
+    <input type="file" id="videoUpload" accept="video/*">
+
+    <!-- Video Player -->
+    <video id="player" controls>
+        Your browser does not support the video tag.
+    </video>
+
+    <script>
+        const upload = document.getElementById('videoUpload');
+        const player = document.getElementById('player');
+
+        upload.addEventListener('change', function() {
+            const file = this.files[0];  // get the selected file
+            if (file) {
+                const url = URL.createObjectURL(file); // create temporary URL
+                player.src = url;       // set video source
+                player.load();          // load the video
+                player.play();          // optional: auto play
+            }
+        });
+    </script>
+
+</body>
+</html>
